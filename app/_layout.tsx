@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import WebView from 'react-native-webview';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,12 +30,30 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    //   <Stack>
+    //     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    //     <Stack.Screen name="+not-found" />
+    //   </Stack>
+      
+    // </ThemeProvider>
+    <>
+    {/* <StatusBar style="auto" /> */}
+    <WebView
+      source={{ uri: "https://infomary.com/login" }}
+      style={styles.container}
+      // startInLoadingState
+      // renderLoading={() => (
+      //   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      //     <ActivityIndicator size="large" color="#3498db" />
+      //   </View>
+      // )}
+    />
+    </>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
