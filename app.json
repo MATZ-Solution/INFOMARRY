@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Info Mary",
-    "slug": "Info_easMary",
+    "slug": "Info_Mary",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#000"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.infomary"
     },
@@ -43,7 +44,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "8652e4b8-51b4-4935-98b7-6c741bc97ee0"
+        "projectId": "a514b00a-7e97-4b54-a02e-d0d7ca48baf7"
       }
     }
   }
