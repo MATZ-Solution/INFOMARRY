@@ -1,57 +1,31 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Linking, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+  const handleShouldStartLoadWithRequest = (event: any) => {
+    if (event.url.includes("accounts.google.com")) {
+      Linking.openURL(event.url); // Open in Safari
+      return false; // Stop WebView from loading Google login
     }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+    return true;
+  };
 
   return (
-    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    //   <Stack>
-    //     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    //     <Stack.Screen name="+not-found" />
-    //   </Stack>
-      
-    // </ThemeProvider>
-    <>
-    {/* <StatusBar style="auto" /> */}
-    <WebView
-      source={{ uri: "https://infomary.com/login" }}
-      style={styles.container}
-      // startInLoadingState
-      // renderLoading={() => (
-      //   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      //     <ActivityIndicator size="large" color="#3498db" />
-      //   </View>
-      // )}
-    />
-    </>
+    <SafeAreaView style={{ flex: 1 }}>
+      <WebView
+        source={{ uri: "https://infomary.com/login" }}
+        style={styles.container}
+        javaScriptEnabled
+        domStorageEnabled
+        useWebKit
+        originWhitelist={['*']}
+        onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
+      />
+    </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
