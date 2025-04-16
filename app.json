@@ -13,7 +13,8 @@
       "bundleIdentifier": "com.infomary",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "icon": "./assets/images/icon.png"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,17 +33,12 @@
       [
         "expo-splash-screen",
         {
-          "ios": {
-            "backgroundColor": "#ffffff",
-            "image": "./assets/images/splash-icon.png",
-            "resizeMode": "cover"
-          },
-          "android": {
-            "backgroundColor": "#ffffff",
-            "image": "./assets/images/splash-android-icon.png",
-            "resizeMode": "cover"
-          }
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
         }
+      
       ]
     ],
     "experiments": {
@@ -51,9 +47,6 @@
     "extra": {
       "router": {
         "origin": false
-      },
-      "eas": {
-        "projectId": "a514b00a-7e97-4b54-a02e-d0d7ca48baf7"
       }
     }
   }
