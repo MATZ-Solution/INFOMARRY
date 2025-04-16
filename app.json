@@ -2,7 +2,7 @@
   "expo": {
     "name": "Info Mary",
     "slug": "Info_Mary",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -35,10 +35,8 @@
         {
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#FFFFFF"
+          "resizeMode": "cover"
         }
-      
       ]
     ],
     "experiments": {
@@ -47,6 +45,9 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "a514b00a-7e97-4b54-a02e-d0d7ca48baf7"
       }
     }
   }
